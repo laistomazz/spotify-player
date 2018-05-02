@@ -47,4 +47,29 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
+#app h1 {
+  padding: 20px 0;
+  border-bottom: 1px solid #c2c2c2;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+#app button {
+  background-color: #2c3e50;
+  color: #fff;
+  border: 0;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  transition: background-color 300ms;
+  cursor: pointer;
+
+  &:hover{
+    background-color: #1c2125;
+  }
+}
+
+#app p {
+  margin-bottom: 10px;
+}
 </style>
