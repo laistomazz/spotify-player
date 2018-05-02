@@ -1,9 +1,13 @@
 <template>
   <section class="player">
 		<h2>Player</h2>
-		<p v-if="currentTrack.name">Playing now: {{ currentTrack.name }}</p>
-    <button @click="playTrack" :disabled="status === 'playing'">Play</button>
-		<button @click="pauseTrack" :disabled="status === 'paused'">Pause</button>
+		<p v-if="currentTrack.name">{{ status === 'playing' ? 'Playing now:' : ''}} {{ currentTrack.name }}</p>
+    <button
+			@click="toggleTrack"
+			v-if="status !== ''"
+		>
+			{{ this.status === 'play' ? 'Pause' : 'Play' }}
+		</button>
   </section>
 </template>
 
@@ -14,7 +18,8 @@ export default {
 	name: 'Player',
 	data() {
 		return {
-			status: 'stopped',
+			status: '',
+			player: {},
 		};
 	},
 	computed: {
@@ -23,6 +28,9 @@ export default {
 		},
 		playlist() {
 			return this.$store.state.playlist;
+		},
+		token() {
+			return this.$store.state.token;
 		}
 	},
 	mounted() {
@@ -42,10 +50,9 @@ export default {
 		},
 		initPlayer() {
 			window.onSpotifyWebPlaybackSDKReady = () => {
-				const token = config.playerToken;
-				const player = new Spotify.Player({
+				window.player = new Spotify.Player({
 					name: 'Web Playback SDK Quick Start Player',
-					getOAuthToken: cb => { cb(token); }
+					getOAuthToken: cb => { cb(this.token); }
 				});
 
 				// Error handling
@@ -72,11 +79,21 @@ export default {
 				player.connect();
 			};
 		},
+		toggleTrack() {
+			if (this.status !== 'play') {
+				this.playTrack(this.currentTrack.uri);
+			} else {
+				this.pauseTrack();
+			}
+		},
 		playTrack(trackUri) {
 			this.$store.dispatch('PLAY_TRACK', trackUri);
+			this.status = 'play';
 		},
-		pauseTrack(trackUri) {
-			console.log('doing')
+		pauseTrack() {
+			player.pause().then(() => {
+				this.status = 'pause';
+			});
 		}
 	}
 }
