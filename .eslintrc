@@ -3,5 +3,15 @@
   "extends": [
     "plugin:vue/essential",
     "@vue/airbnb"
-  ]
+  ],
+  "rules": {
+    "no-param-reassign": ["error", {
+      "props": true,
+      "ignorePropertyModificationsFor": [
+        "state",
+        "acc",
+        "e"
+      ]
+    }]
+  }
 }
