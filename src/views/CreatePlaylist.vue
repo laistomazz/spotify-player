@@ -25,8 +25,8 @@ export default {
     user() {
       return this.$store.state.user;
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss">

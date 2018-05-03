@@ -15,10 +15,10 @@ export default {
       this.$store.dispatch('GET_USER_DATA', accessToken)
         .then(() => {
           this.$router.push({ path: '/create-playlist' });
-				})
-				.catch((err) => {
-					console.log('Error retrieving your data. Please try again :/')
-				});
+        })
+        .catch((err) => {
+          console.log('Error retrieving your data. Please try again :/');
+        });
     },
     login() {
       const scopes = 'streaming user-read-birthdate user-read-email user-read-private';
@@ -28,13 +28,14 @@ export default {
       const height = 730;
       const left = (screen.width / 2) - (width / 2);
       const top = (screen.height / 2) - (height / 2);
-    
+
       this.listenAuth();
-        
-      window.open(url,
+
+      window.open(
+        url,
         'Spotify',
-        'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width='
-        + width + ', height=' + height + ', top=' + top + ', left=' + left
+        `menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=${
+          width}, height=${height}, top=${top}, left=${left}`,
       );
     },
     getLoginURL(scopes) {
@@ -49,7 +50,7 @@ export default {
           }
         }
       }, false);
-    }
-  }
+    },
+  },
 };
 </script>

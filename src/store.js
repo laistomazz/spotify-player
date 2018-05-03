@@ -13,7 +13,7 @@ export default new Vuex.Store({
     playlist: [],
     searchResult: {},
     token: '',
-    user: {},  
+    user: {},
   },
   mutations: {
     SET_USER(state, { res }) {
@@ -54,7 +54,7 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         axios.get(
           'https://api.spotify.com/v1/me',
-          { headers: { Authorization: `Bearer ${token}` } }
+          { headers: { Authorization: `Bearer ${token}` } },
         ).then(
           (response) => {
             commit('SET_TOKEN', { token });
@@ -106,9 +106,11 @@ export default new Vuex.Store({
         axios.put(
           `${config.api}/me/player/play?device_id=${state.deviceId}&type=track`,
           JSON.stringify({ uris: [trackUri] }),
-          { headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${state.token}` }
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${state.token}`,
+            },
           },
         ).then(
           (response) => {

@@ -13,10 +13,10 @@ export default {
   methods: {
     checkAuth() {
       const hash = {};
-      window.location.hash.replace(/^#\/?/, '').split('&').forEach(function(kv) {
+      window.location.hash.replace(/^#\/?/, '').split('&').forEach((kv) => {
         const spl = kv.indexOf('=');
         if (spl != -1) {
-          hash[kv.substring(0, spl)] = decodeURIComponent(kv.substring(spl+1));
+          hash[kv.substring(0, spl)] = decodeURIComponent(kv.substring(spl + 1));
         }
       });
       if (hash.access_token) {
@@ -27,9 +27,9 @@ export default {
         }), window.location.href);
         window.close();
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 

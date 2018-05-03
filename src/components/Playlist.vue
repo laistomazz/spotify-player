@@ -25,66 +25,66 @@
 
 <script>
 export default {
-	name: 'Playlist',
-	computed: {
-		playlist() {
-			return this.$store.state.playlist;
-		}
-	},
-	methods: {
-		removeTrack(value) {
-			const payload = {
-				track: value,
-				type: 'remove',
-			}
-			this.$store.dispatch('UPDATE_PLAYLIST', payload);
-		},
-		playTrack(track) {
-			this.$store.dispatch('UPDATE_CURRENT_TRACK', track);
-		},
-		handleDragStart(e) {
-			e.dataTransfer.effectAllowed = 'move';
-			e.dataTransfer.setData('text/html', e.target.id);
-		},
-		handleDragOver(e) {
-			if (e.preventDefault) {
-				e.preventDefault();
-			}
+  name: 'Playlist',
+  computed: {
+    playlist() {
+      return this.$store.state.playlist;
+    },
+  },
+  methods: {
+    removeTrack(value) {
+      const payload = {
+        track: value,
+        type: 'remove',
+      };
+      this.$store.dispatch('UPDATE_PLAYLIST', payload);
+    },
+    playTrack(track) {
+      this.$store.dispatch('UPDATE_CURRENT_TRACK', track);
+    },
+    handleDragStart(e) {
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/html', e.target.id);
+    },
+    handleDragOver(e) {
+      if (e.preventDefault) {
+        e.preventDefault();
+      }
 
-			e.dataTransfer.dropEffect = 'move'; 
+      e.dataTransfer.dropEffect = 'move';
 
-			return false;
-		},
-		handleDrop(e) {
-			if (e.stopPropagation) {
-				e.stopPropagation();
-			}
+      return false;
+    },
+    handleDrop(e) {
+      if (e.stopPropagation) {
+        e.stopPropagation();
+      }
 
-			const enterId = e.dataTransfer.getData('text/html');
-			const leaveId = e.target.id;
+      const enterId = e.dataTransfer.getData('text/html');
+      const leaveId = e.target.id;
 
-			console.log(enterId, leaveId);
+      console.log(enterId, leaveId);
 
-			if (leaveId) {
-				this.swapTracks(enterId.replace('track-', ''), leaveId.replace('track-', ''));
-			}
+      if (leaveId) {
+        this.swapTracks(enterId.replace('track-', ''), leaveId.replace('track-', ''));
+      }
 
-			return false;
-		},
-		swapTracks(start, end) {
-			const movedItem = this.playlist.find((item, index) => index == start);
-			const remainingItems = this.playlist.filter((item, index) => index != start);
-		
-			const reorderedItems = [
-					...remainingItems.slice(0, end),
-					movedItem,
-					...remainingItems.slice(end),
-			];
+      return false;
+    },
+    swapTracks(start, end) {
+      const movedItem = this.playlist.find((item, index) => index == start);
+      const remainingItems = this.playlist.filter((item, index) => index != start);
 
-			this.$store.dispatch('SWAP_PLAYLIST', reorderedItems);
-		}
-	},
-}
+      const reorderedItems = [
+        ...remainingItems.slice(0, end),
+        movedItem,
+        ...remainingItems.slice(end),
+      ];
+
+      this.$store.dispatch('SWAP_PLAYLIST', reorderedItems);
+    },
+  },
+};
 </script>
 
 <style lang="scss">
@@ -113,5 +113,4 @@ export default {
 	font-size: 1.2em;
 }
 </style>
-
 

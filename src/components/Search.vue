@@ -17,39 +17,39 @@
 import _ from 'lodash';
 
 export default {
-	name: 'Search',
-	data() {
-		return {
-			searchKey: '',
-		}
-	},
-	watch: {
-		searchKey() {
-			this.searchSong();
-		},
-	},
-	computed: {
-		searchResult() {
-			return this.$store.state.searchResult;
-		}
-	},
-	methods: {
-		searchSong: _.debounce(function() {
-			if (this.searchKey.length > 3) {
-			this.$store.dispatch('SEARCH', this.searchKey)
-				.catch((err) => {
-					alert(`Wow, something wrong happened :( ${err}`)
-				})
-			}
-		}, 500),
-		addTrack(value) {
-			const payload = {
-				track: value,
-				type: 'add',
-			}
-			this.$store.dispatch('UPDATE_PLAYLIST', payload);
-		}
-	}
-}
+  name: 'Search',
+  data() {
+    return {
+      searchKey: '',
+    };
+  },
+  watch: {
+    searchKey() {
+      this.searchSong();
+    },
+  },
+  computed: {
+    searchResult() {
+      return this.$store.state.searchResult;
+    },
+  },
+  methods: {
+    searchSong: _.debounce(function () {
+      if (this.searchKey.length > 3) {
+        this.$store.dispatch('SEARCH', this.searchKey)
+          .catch((err) => {
+            alert(`Wow, something wrong happened :( ${err}`);
+          });
+      }
+    }, 500),
+    addTrack(value) {
+      const payload = {
+        track: value,
+        type: 'add',
+      };
+      this.$store.dispatch('UPDATE_PLAYLIST', payload);
+    },
+  },
+};
 </script>
 
