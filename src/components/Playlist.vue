@@ -2,10 +2,10 @@
 	<section class="playlist">
 		<h2>Your playlist</h2>
 
-		<ul v-if="playlist.length > 0">
-			<li v-for="track in playlist" :key="track.id">
-				<img :src="track.album.images[2].url" alt="Album cover">
-				{{ track.name }}
+		<ul class="playlist__list" v-if="playlist.length > 0">
+			<li class="track" v-for="track in playlist" :key="track.id">
+				<img class="track__thumb":src="track.album.images[2].url" alt="Album cover">
+				<p class="track__name">{{ track.name }}</p>
 				<button @click="removeTrack(track)">Remove from playlist</button>
 				<button @click="playTrack(track)">Play song</button>
 			</li>
@@ -36,4 +36,32 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss">
+.playlist__list {
+	list-style: none;
+	padding: 0 10px;
+}
+
+.track {
+	width: 100%;
+	display: table;
+	border-bottom: 1px solid #c2c2c2;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+
+.track__name {
+	font-size: 1.4em;
+}
+
+.track__thumb {
+	float: left;
+}
+
+.track button {
+	font-size: 1.2em;
+}
+</style>
+
 
