@@ -1,8 +1,6 @@
 <template>
   <main>
     <template v-if="user.id">
-      <h2>Welcome, {{ user.display_name }}</h2>
-      <p>Let's create your playlist!</p>
       <Player />
       <Search />
       <Playlist />
@@ -31,7 +29,7 @@ export default {
 }
 </script>
 
-<style  lang="scss">
+<style lang="scss">
 main {
   width: 100%;
   display: table;
@@ -40,6 +38,7 @@ main {
 main .search {
   width: 30%;
   float: left;
+  border-right: 1px solid #c2c2c2;
 }
 
 main .playlist {
