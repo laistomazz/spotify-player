@@ -45,6 +45,9 @@ export default new Vuex.Store({
     SET_DEVICE_PLAYER(state, { id }) {
       state.deviceId = id;
     },
+    SET_PLAYLIST(state, { playlist }) {
+      state.playlist = playlist;
+    },
   },
   actions: {
     GET_USER_DATA({ commit }, token) {
@@ -89,6 +92,9 @@ export default new Vuex.Store({
         commit('REMOVE_TRACK', { track: payload.track });
       }
     },
+    SWAP_PLAYLIST({ commit }, playlist) {
+      commit('SET_PLAYLIST', { playlist });
+    },
     UPDATE_CURRENT_TRACK({ commit }, track) {
       commit('SET_CURRENT_TRACK', { track });
     },
@@ -106,7 +112,6 @@ export default new Vuex.Store({
           },
         ).then(
           (response) => {
-            console.log(response);
             resolve(response);
           },
           (err) => {
