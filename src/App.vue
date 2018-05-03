@@ -40,6 +40,10 @@ export default {
   box-sizing: border-box;
 }
 
+body {
+  font-size: 62.5%;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -53,6 +57,7 @@ export default {
   border-bottom: 1px solid #c2c2c2;
   text-transform: uppercase;
   margin-bottom: 20px;
+  font-size: 2em;
 }
 
 #app button {
@@ -61,6 +66,7 @@ export default {
   border: 0;
   padding: 10px 20px;
   text-transform: uppercase;
+  font-weight: 700;
   transition: background-color 300ms;
   cursor: pointer;
 
@@ -71,5 +77,6 @@ export default {
 
 #app p {
   margin-bottom: 10px;
+  font-size: 1.4em;
 }
 </style>
