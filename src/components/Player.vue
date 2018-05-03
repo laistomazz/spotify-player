@@ -1,27 +1,25 @@
 <template>
   <section class="player">
-		<h2>Player</h2>
-		<p v-if="currentTrack.name">
-			{{ status === 'play' ? 'Playing now:' : ''}} {{ currentTrack.name }}</p>
+    <h2>Player</h2>
+    <p v-if="currentTrack.name">
+      {{ status === 'play' ? 'Playing now:' : ''}} {{ currentTrack.name }}</p>
     <p v-else>Choose a song to play</p>
-		<button
-			@click="toggleTrack"
-			v-if="status !== ''"
-		>
-			{{ this.status === 'play' ? 'Pause' : 'Play' }}
-		</button>
-		<button
-			@click="playNext"
-			v-if="hasNext > -1"
-		>
-			Next
-		</button>
+    <button
+      @click="toggleTrack"
+      v-if="status !== ''"
+    >
+      {{ this.status === 'play' ? 'Pause' : 'Play' }}
+    </button>
+    <button
+      @click="playNext"
+      v-if="hasNext > -1"
+    >
+      Next
+    </button>
   </section>
 </template>
 
 <script>
-import config from '../config';
-
 export default {
   name: 'Player',
   data() {
@@ -64,6 +62,7 @@ export default {
       this.initPlayer();
     },
     initPlayer() {
+      /* eslint-disable no-undef, camelcase */
       window.onSpotifyWebPlaybackSDKReady = () => {
         window.player = new Spotify.Player({
           name: 'Web Playback SDK Quick Start Player',
@@ -93,6 +92,7 @@ export default {
         // Connect to the player!
         player.connect();
       };
+      /* eslint-enable */
     },
     toggleTrack() {
       if (this.status !== 'play') {
@@ -106,6 +106,7 @@ export default {
       this.status = 'play';
     },
     pauseTrack() {
+      // eslint-disable-next-line no-undef
       player.pause().then(() => {
         this.status = 'pause';
       });
@@ -119,7 +120,7 @@ export default {
 
 <style>
 .player {
-	padding: 20px 0;
+  padding: 20px 0;
   border-bottom: 1px solid #c2c2c2;
   margin-bottom: 20px;
 }

@@ -1,16 +1,16 @@
 <template>
-	<section class="search">
-		<h2>Find a song:</h2>
-		<input type="text" v-model="searchKey">
+  <section class="search">
+    <h2>Find a song:</h2>
+    <input type="text" v-model="searchKey">
 
-		<ul class="playlist__list" v-if="searchResult.length > 0">
-			<li class="track" v-for="track in searchResult" :key="track.id">
-				<img class="track__thumb" :src="track.album.images[2].url" alt="Album cover">
-				<p class="track__name">{{ track.name }}</p>
-				<button @click="addTrack(track)">Add to playlist</button>
-			</li>
-		</ul>
-	</section>
+    <ul class="playlist__list" v-if="searchResult.length > 0">
+      <li class="track" v-for="track in searchResult" :key="track.id">
+        <img class="track__thumb" :src="track.album.images[2].url" alt="Album cover">
+        <p class="track__name">{{ track.name }}</p>
+        <button @click="addTrack(track)">Add to playlist</button>
+      </li>
+    </ul>
+  </section>
 </template>
 
 <script>

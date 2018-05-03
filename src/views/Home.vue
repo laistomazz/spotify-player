@@ -17,7 +17,7 @@ export default {
           this.$router.push({ path: '/create-playlist' });
         })
         .catch((err) => {
-          console.log('Error retrieving your data. Please try again :/');
+          console.log('Error retrieving your data. Please try again :/', err);
         });
     },
     login() {
@@ -26,8 +26,8 @@ export default {
 
       const width = 450;
       const height = 730;
-      const left = (screen.width / 2) - (width / 2);
-      const top = (screen.height / 2) - (height / 2);
+      const left = (window.screen.width / 2) - (width / 2);
+      const top = (window.screen.height / 2) - (height / 2);
 
       this.listenAuth();
 

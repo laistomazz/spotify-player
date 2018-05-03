@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import Search from '../components/Search';
-import Playlist from '../components/Playlist';
-import Player from '../components/Player';
+import Search from '../components/Search.vue';
+import Playlist from '../components/Playlist.vue';
+import Player from '../components/Player.vue';
 
 export default {
   name: 'CreatePlaylist',

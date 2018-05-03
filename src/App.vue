@@ -15,6 +15,7 @@ export default {
       const hash = {};
       window.location.hash.replace(/^#\/?/, '').split('&').forEach((kv) => {
         const spl = kv.indexOf('=');
+        // eslint-disable-next-line
         if (spl != -1) {
           hash[kv.substring(0, spl)] = decodeURIComponent(kv.substring(spl + 1));
         }
